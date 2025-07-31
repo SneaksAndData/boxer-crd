@@ -1,0 +1,74 @@
+{{- if and .Values.customResources.identityProvider.create -}}
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: identity-providers.auth.sneaksanddata.com
+spec:
+  group: auth.sneaksanddata.com
+  names:
+    plural: identity-providers
+    singular: identity-provider
+    kind: IdentityProvider
+    shortNames:
+      - idp
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                oidc:
+                  type: object
+                  properties:
+                    userIdClaim:
+                      type: string
+                    discoveryUrl:
+                      type: string
+                    issuers:
+                      type: array
+                      items:
+                        type: string
+                    audiences:
+                      type: array
+                      items:
+                        type: string
+                identities:
+                  type: object
+                  properties:
+                    active:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          principal:
+                            type: object
+                            properties:
+                              schema:
+                                type: string
+                              principal:
+                                type: string
+                    inactive:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          principal:
+                            type: object
+                            properties:
+                              schema:
+                                type: string
+                              principal:
+                                type: string
+      subresources:
+        status: {}
+  scope: Namespaced
+{{end}}
