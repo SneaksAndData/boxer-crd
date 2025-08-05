@@ -10,3 +10,12 @@ customResources:
 
   schemaDocument:
     create: true
+
+  actionDiscoveryDocument:
+    create: true
+
+  resourceDiscoveryDocument:
+    create: true
+
+  policySet:
+    create: true
