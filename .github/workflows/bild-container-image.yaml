@@ -1,0 +1,52 @@
+name: Build Container Image
+run-name: Build Boxer Issuer Container Image for GHCR from ${{ github.ref }} by @${{ github.actor }}
+
+on: workflow_dispatch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build_image:
+    name: Build Docker Image and Helm Charts
+    runs-on:
+      labels: ubuntu-latest-16-cores-arm-public
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get project version
+        uses: SneaksAndData/github-actions/generate_version@v0.1.9
+        id: version
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}},value=${{steps.version.outputs.version}}
+          flavor:
+            latest=false
+
+      - name: Build and Push Chart
+        uses: SneaksAndData/github-actions/build_helm_chart@v0.1.9
+        with:
+          application: ${{ github.event.repository.name }}
+          app_version: ${{ steps.meta.outputs.version }}
+          container_registry_user: ${{ github.actor }}
+          container_registry_token: ${{ secrets.GITHUB_TOKEN }}
+          container_registry_address: ghcr.io/sneaksanddata/
