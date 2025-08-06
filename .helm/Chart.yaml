@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: 0.0.0
+description: Custom Resource Definitions for Boxer
+maintainers:
+  - email: esdsupport@ecco.com
+    name: ECCO Data & AI
+name: boxer-crd
+version: 0.0.0

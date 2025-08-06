@@ -1,0 +1,35 @@
+{{- if and .Values.customResources.entitySet.create -}}
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: entity-sets.auth.sneaksanddata.com
+spec:
+  group: auth.sneaksanddata.com
+  names:
+    plural: entity-sets
+    singular: entity-set
+    kind: EntitySet
+    shortNames:
+      - es
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                entities:
+                  type: object
+                  properties:
+                    active:
+                      type: string
+                    inactive:
+                      type: string
+      subresources:
+        status: {}
+  scope: Namespaced
+{{end}}

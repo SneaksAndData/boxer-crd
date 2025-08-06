@@ -1,0 +1,12 @@
+environment: "Production"
+
+customResources:
+
+  identityProvider:
+    create: true
+
+  entitySet:
+    create: true
+
+  schemaDocument:
+    create: true
