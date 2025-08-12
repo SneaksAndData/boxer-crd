@@ -1,5 +1,5 @@
-name: Build Container Image
-run-name: Build Boxer Issuer Container Image for GHCR from ${{ github.ref }} by @${{ github.actor }}
+name: Build Helm Chart
+run-name: Build Boxer CRD Helm Chart for GHCR from ${{ github.ref }} by @${{ github.actor }}
 
 on: workflow_dispatch
 
