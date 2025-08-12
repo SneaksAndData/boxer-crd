@@ -8,7 +8,7 @@ spec:
   names:
     plural: identity-providers
     singular: identity-provider
-    kind: IdentityProvider
+    kind: IdentityProviderDocument
     shortNames:
       - idp
   versions:
@@ -22,7 +22,10 @@ spec:
             spec:
               type: object
               properties:
+                active:
+                  type: boolean
                 oidc:
+                  nullable: true
                   type: object
                   properties:
                     userIdClaim:
@@ -37,37 +40,6 @@ spec:
                       type: array
                       items:
                         type: string
-                identities:
-                  type: object
-                  properties:
-                    active:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          principal:
-                            type: object
-                            properties:
-                              schema:
-                                type: string
-                              principal:
-                                type: string
-                    inactive:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          principal:
-                            type: object
-                            properties:
-                              schema:
-                                type: string
-                              principal:
-                                type: string
       subresources:
         status: {}
   scope: Namespaced
