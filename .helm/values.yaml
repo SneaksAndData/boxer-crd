@@ -5,7 +5,10 @@ customResources:
   identityProvider:
     create: true
 
-  entitySet:
+  externalIdentity:
+    create: true
+
+  entityDocument:
     create: true
 
   schemaDocument:

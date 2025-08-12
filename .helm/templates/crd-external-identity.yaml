@@ -1,16 +1,16 @@
-{{- if and .Values.customResources.entitySet.create -}}
+{{- if and .Values.customResources.externalIdentity.create -}}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: entity-sets.auth.sneaksanddata.com
+  name: external-identities.auth.sneaksanddata.com
 spec:
   group: auth.sneaksanddata.com
   names:
-    plural: entity-sets
-    singular: entity-set
-    kind: EntitySet
+    plural: external-identities
+    singular: external-identity
+    kind: ExternalIdentityDocument
     shortNames:
-      - es
+      - eids
   versions:
     - name: v1beta1
       served: true
@@ -22,13 +22,20 @@ spec:
             spec:
               type: object
               properties:
-                entities:
+                active:
+                  type: boolean
+                identityProvider:
+                  type: string
+                id:
+                  type: string
+                principalRef:
                   type: object
                   properties:
-                    active:
+                    schema:
                       type: string
-                    inactive:
+                    principal:
                       type: string
+
       subresources:
         status: {}
   scope: Namespaced
