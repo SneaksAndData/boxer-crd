@@ -1,0 +1,30 @@
+{{- $dict := .Values.rbac.clusterRoles }}
+{{- $dot := . }}
+{{- range $key := sortAlpha (keys $dict) }}
+---
+{{- $config := index $dict $key }}
+{{- if $config.viewer.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ $config.viewer.nameOverride | default (printf "%s-%s-viewer" (include "service.name" $dot) $key ) | kebabcase }}
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-edit: {{ $config.viewer.aggregateToEdit | quote }}
+    rbac.authorization.k8s.io/aggregate-to-view: {{ $config.viewer.aggregateToView | quote }}
+    {{- include "app.labels" $dot | nindent 4 }}
+    {{- with $config.viewer.additionalLabels }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $config.viewer.additionalAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+rules:
+  - verbs:
+    - "get"
+    - "list"
+    - "watch"
+   {{ include "rbac.apiGroups" . | indent 4 }}
+   {{ include (printf "rbac.resources.%s" $key) . | indent 4 }}
+{{- end }}
+{{- end }}

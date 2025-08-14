@@ -8,7 +8,7 @@ customResources:
   externalIdentity:
     create: true
 
-  entityDocument:
+  cedarEntityDocument:
     create: true
 
   schemaDocument:
@@ -22,3 +22,117 @@ customResources:
 
   policySet:
     create: true
+
+
+rbac:
+  clusterRoles:
+    identityProvider:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: {}
+        additionalAnnotations: {}
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: {}
+        additionalAnnotations: {}
+
+    externalIdentity:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+
+    cedarEntity:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+
+    schema:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+
+    actionDiscovery:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+
+    resourceDiscovery:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+
+    policySet:
+      viewer:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: true
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
+      editor:
+        create: true
+        aggregateToEdit: true
+        aggregateToView: false
+        additionalLabels: { }
+        additionalAnnotations: { }
+        nameOverride: ""
