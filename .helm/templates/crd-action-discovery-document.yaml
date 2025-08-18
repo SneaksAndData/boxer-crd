@@ -26,6 +26,8 @@ spec:
                   type: boolean
                 hostname:
                   type: string
+                schema:
+                  type: string
                 routes:
                   type: array
                   items:

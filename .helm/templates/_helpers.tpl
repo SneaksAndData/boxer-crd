@@ -83,7 +83,7 @@ resources:
 
 {{- define "rbac.resources.schema" }}
 resources:
-  - cedar-entities
+  - schemas
 {{- end }}
 
 {{- define "rbac.resources.actionDiscovery" }}
