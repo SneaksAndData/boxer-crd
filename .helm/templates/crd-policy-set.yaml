@@ -22,6 +22,8 @@ spec:
             spec:
               type: object
               properties:
+                schema:
+                  type: string
                 active:
                   type: boolean
                 policies:
