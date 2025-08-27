@@ -28,6 +28,8 @@ spec:
                   type: string
                 id:
                   type: string
+                validatorSchemaId:
+                  type: string
                 principalRef:
                   type: object
                   properties:
