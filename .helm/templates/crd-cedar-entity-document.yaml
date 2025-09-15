@@ -15,6 +15,10 @@ spec:
     - name: v1beta1
       served: true
       storage: true
+      additionalPrinterColumns:
+        - name: Active
+          type: boolean
+          jsonPath: .spec.active
       schema:
         openAPIV3Schema:
           type: object

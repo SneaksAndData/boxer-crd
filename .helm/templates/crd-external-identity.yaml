@@ -15,6 +15,22 @@ spec:
     - name: v1beta1
       served: true
       storage: true
+      additionalPrinterColumns:
+        - name: Active
+          type: boolean
+          jsonPath: .spec.active
+        - name: Identity Provider
+          type: string
+          jsonPath: .spec.identityProvider
+        - name: Validator Schema Id
+          type: string
+          jsonPath: .spec.validatorSchemaId
+        - name: Principal Id
+          type: string
+          jsonPath: .spec.principalRef.principal
+        - name: Principal Schema
+          type: string
+          jsonPath: .spec.principalRef.schema
       schema:
         openAPIV3Schema:
           type: object
